@@ -520,6 +520,7 @@ void BKEngine::clearInternal()
 
 	tapTempoHistory->resetValue();
 	defaultPresetId->resetValue();
+	autoStartCuelistId->resetValue();
 	encodersNumber->resetValue();
 	gridCols->resetValue();
 	gridRows->resetValue();
@@ -1852,6 +1853,7 @@ void BKEngine::parameterValueChanged(Parameter* p) {
 	else if (p == defaultPresetId) {
 		Brain::getInstance()->defaultValuesNeedRefresh = true;
 	}
+	
 
 }
 

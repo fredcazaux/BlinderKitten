@@ -66,7 +66,7 @@ jobs:
         working-directory: ./Binaries/CI/App
 #
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: BlinderKitten-${{ matrix.arch }}
           path: ./Binaries/CI/App/${{ steps.create_package.outputs.pkg-name }}

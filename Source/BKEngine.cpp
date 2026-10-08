@@ -883,14 +883,17 @@ void BKEngine::loadJSONDataInternalEngine(var data, ProgressTask* loadingTask)
 	Brain::getInstance()->defaultValuesNeedRefresh = true;
 
 	// Auto-start cuelist if configured
-	int autoStartCuelistId = dynamic_cast<BKEngine*>(Engine::mainEngine)->autoStartCuelistId->intValue();
-	if (autoStartCuelistId > 0) {
-		Cuelist* autoStartCuelist = Brain::getInstance()->getCuelistById(autoStartId);
-		if (autoStartCuelist != nullptr) {
-			autoStartCuelist->userGo();
-		}
+	// Auto-start cuelist if configured
+	int autoStartId = autoStartCuelistId->intValue();
+	if (autoStartId > 0) {
+	    Cuelist* autoStartCuelist = Brain::getInstance()->getCuelistById(autoStartId);
+	    if (autoStartCuelist != nullptr) {
+	        MessageManager::callAsync([autoStartCuelist]() {
+	            autoStartCuelist->userGo();
+	        });
+	    }
 	}
-}
+	}
 
 void BKEngine::childStructureChanged(ControllableContainer* cc)
 {

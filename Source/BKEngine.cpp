@@ -138,6 +138,8 @@ BKEngine::BKEngine() :
 	tapTempoHistory->addParameterListener(this);
 	defaultPresetId = genericSettingsContainer.addIntParameter("Default preset ID", "ID of the preset to use as default value", 0, 0);
 	defaultPresetId->addParameterListener(this);
+	autoStartCuelistId = genericSettingsContainer.addIntParameter("Auto-start Cuelist ID", "ID of the cuelist to automatically trigger when the file opens (0 = disabled)", 0, 0);
+	autoStartCuelistId->addParameterListener(this);
 
 	faderSelectionMode = virtualParamsContainer.addEnumParameter("Faders selection mode", "Single copies elements on only one element, column assign target to all elements in selected column");
 	faderSelectionMode->addOption("Single", "single")->addOption("Column", "column");

@@ -418,6 +418,15 @@ void Brain::brainLoop() {
         Preset* def = getPresetById(presetId);
         if (def != nullptr) def->computeValues();
 
+        // Auto-start cuelist if configured
+        int autoStartCuelistId = dynamic_cast<BKEngine*>(Engine::mainEngine)->autoStartCuelistId->intValue();
+        if (autoStartCuelistId > 0) {
+            Cuelist* autoStartCuelist = getCuelistById(autoStartCuelistId);
+            if (autoStartCuelist != nullptr) {
+                autoStartCuelist->userGo();
+            }
+        }
+
         for (SubFixture* sf : allSubfixtures) {
             std::shared_ptr < HashMap<ChannelType*, float>> presetValues = def != nullptr ? def->getSubFixtureValues(sf) : nullptr;
             for (SubFixtureChannel* sfc : sf->channelsContainer) {

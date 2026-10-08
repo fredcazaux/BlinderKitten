@@ -885,7 +885,7 @@ void BKEngine::loadJSONDataInternalEngine(var data, ProgressTask* loadingTask)
 	// Auto-start cuelist if configured
 	int autoStartCuelistId = dynamic_cast<BKEngine*>(Engine::mainEngine)->autoStartCuelistId->intValue();
 	if (autoStartCuelistId > 0) {
-		Cuelist* autoStartCuelist = getCuelistById(autoStartCuelistId);
+		Cuelist* autoStartCuelist = Brain::getInstance()->getCuelistById(autoStartId);
 		if (autoStartCuelist != nullptr) {
 			autoStartCuelist->userGo();
 		}
